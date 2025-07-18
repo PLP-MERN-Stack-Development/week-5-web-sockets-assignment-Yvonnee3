@@ -1,78 +1,175 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19951575&assignment_repo_type=AssignmentRepo)
+
 # Real-Time Chat Application with Socket.io
 
-This assignment focuses on building a real-time chat application using Socket.io, implementing bidirectional communication between clients and server.
+A comprehensive real-time chat application built with React, Node.js, Express, Socket.io, and MongoDB. This application demonstrates bidirectional communication between clients and server with advanced chat features.
 
-## Assignment Overview
+## 🚀 Features
 
-You will build a chat application with the following features:
-1. Real-time messaging using Socket.io
-2. User authentication and presence
-3. Multiple chat rooms or private messaging
-4. Real-time notifications
-5. Advanced features like typing indicators and read receipts
+### Core Features
+- ✅ Real-time messaging with Socket.io
+- ✅ User authentication (JWT-based)
+- ✅ Multiple chat rooms/channels
+- ✅ Online/offline status indicators
+- ✅ Typing indicators
+- ✅ Message timestamps
 
-## Project Structure
+### Advanced Features
+- ✅ Private messaging between users
+- ✅ Message reactions (like, love, laugh, angry, sad)
+- ✅ File and image sharing
+- ✅ Read receipts
+- ✅ Browser notifications
+- ✅ Sound notifications
+- ✅ Message search functionality
+- ✅ Message pagination
+- ✅ Reconnection handling
+- ✅ Responsive design
 
-```
+### Technical Features
+- ✅ MongoDB integration with Mongoose
+- ✅ JWT authentication
+- ✅ Socket.io rooms and namespaces
+- ✅ Error handling and validation
+- ✅ File upload system
+- ✅ Push notification system (placeholder)
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React** - UI library
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **Socket.io Client** - Real-time communication
+- **React Router** - Navigation
+- **Axios** - HTTP client
+
+### Backend
+- **Node.js** - Runtime
+- **Express** - Web framework
+- **Socket.io** - Real-time communication
+- **MongoDB** - Database
+- **Mongoose** - ODM
+- **JWT** - Authentication
+- **bcryptjs** - Password hashing
+
+
+## 🏗️ Project Structure
+
+\`\`\`
 socketio-chat/
-├── client/                 # React front-end
-│   ├── public/             # Static files
-│   ├── src/                # React source code
-│   │   ├── components/     # UI components
-│   │   ├── context/        # React context providers
-│   │   ├── hooks/          # Custom React hooks
-│   │   ├── pages/          # Page components
-│   │   ├── socket/         # Socket.io client setup
-│   │   └── App.jsx         # Main application component
-│   └── package.json        # Client dependencies
-├── server/                 # Node.js back-end
-│   ├── config/             # Configuration files
-│   ├── controllers/        # Socket event handlers
-│   ├── models/             # Data models
-│   ├── socket/             # Socket.io server setup
-│   ├── utils/              # Utility functions
-│   ├── server.js           # Main server file
-│   └── package.json        # Server dependencies
-└── README.md               # Project documentation
-```
+├── client/                 # React frontend
+│   ├── public/            # Static files
+│   ├── src/
+│   │   ├── components/    # Reusable UI components
+│   │   │   ├── ChatSidebar.jsx
+│   │   │   ├── ChatWindow.jsx
+│   │   │   ├── Message.jsx
+│   │   │   ├── MessageInput.jsx
+│   │   │   ├── MessageList.jsx
+│   │   │   ├── TypingIndicator.jsx
+│   │   │   └── UserList.jsx
+│   │   ├── context/       # React context providers
+│   │   │   ├── AuthContext.jsx
+│   │   │   ├── NotificationContext.jsx
+│   │   │   └── SocketContext.jsx
+│   │   ├── pages/         # Page components
+│   │   │   ├── Chat.jsx
+│   │   │   ├── Login.jsx
+│   │   │   └── Register.jsx
+│   │   ├── api.js         # API configuration
+│   │   └── App.jsx        # Main app component
+│   └── package.json
+├── server/                # Node.js backend
+│   ├── config/           # Configuration files
+│   │   ├── db.js         # Database connection
+│   │   ├── jwt.js        # JWT utilities
+│   │   └── socket.js     # Socket.io configuration
+│   ├── controllers/      # Route controllers
+│   │   ├── authController.js
+│   │   ├── messageController.js
+│   │   ├── roomController.js
+│   │   └── socketController.js
+│   ├── models/           # Mongoose models
+│   │   ├── Message.js
+│   │   ├── Room.js
+│   │   └── User.js
+│   |
+│   ├── server.js         # Main server file
+│   └── package.json
+└── README.md
+\`\`\`
 
-## Getting Started
+## 🔧 API Endpoints
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week5-Assignment.md` file
-4. Complete the tasks outlined in the assignment
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
+- `GET /api/auth/verify` - Verify JWT token
+- `POST /api/auth/logout` - Logout user
 
-## Files Included
+### Messages
+- `GET /api/messages/:roomId` - Get room messages
+- `GET /api/messages/private/:userId` - Get private messages
+- `GET /api/messages/search` - Search messages
+- `DELETE /api/messages/:messageId` - Delete message
+- `PUT /api/messages/:messageId` - Edit message
 
-- `Week5-Assignment.md`: Detailed assignment instructions
-- Starter code for both client and server:
-  - Basic project structure
-  - Socket.io configuration templates
-  - Sample components for the chat interface
+### Rooms
+- `GET /api/rooms` - Get user rooms
+- `POST /api/rooms` - Create new room
+- `POST /api/rooms/:roomId/join` - Join room
+- `POST /api/rooms/:roomId/leave` - Leave room
+- `GET /api/rooms/:roomId` - Get room details
 
-## Requirements
+## 🔌 Socket Events
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Modern web browser
-- Basic understanding of React and Express
+### Client to Server
+- `authenticate` - Authenticate user
+- `join_room` - Join a chat room
+- `send_message` - Send message to room
+- `send_private_message` - Send private message
+- `typing_start` - Start typing indicator
+- `typing_stop` - Stop typing indicator
+- `add_reaction` - Add reaction to message
+- `upload_file` - Upload file
+- `mark_as_read` - Mark message as read
 
-## Submission
+### Server to Client
+- `authenticated` - Authentication successful
+- `online_users` - List of online users
+- `user_online` - User came online
+- `user_offline` - User went offline
+- `new_message` - New message received
+- `private_message` - Private message received
+- `user_typing` - User started typing
+- `user_stop_typing` - User stopped typing
+- `message_reaction` - Message reaction added
+- `error` - Error occurred
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+## 🎯 Usage
 
-1. Complete both the client and server portions of the application
-2. Implement the core chat functionality
-3. Add at least 3 advanced features
-4. Document your setup process and features in the README.md
-5. Include screenshots or GIFs of your working application
-6. Optional: Deploy your application and add the URLs to your README.md
+1. **Registration/Login**
+   - Create a new account or login with existing credentials
+   - JWT token is stored in localStorage for authentication
 
-## Resources
+2. **Chat Rooms**
+   - Join existing rooms (General, Random)
+   - Create new rooms using the + button
+   - Switch between rooms using the sidebar
 
-- [Socket.io Documentation](https://socket.io/docs/v4/)
-- [React Documentation](https://react.dev/)
-- [Express.js Documentation](https://expressjs.com/)
-- [Building a Chat Application with Socket.io](https://socket.io/get-started/chat) 
+3. **Messaging**
+   - Send text messages in real-time
+   - Upload files and images
+   - Add reactions to messages
+   - Send private messages to online users
+
+4. **Real-time Features**
+   - See who's online
+   - View typing indicators
+   - Receive browser notifications
+   - Auto-reconnection on disconnect
+
+
+
+
