@@ -122,7 +122,9 @@ socketio-chat/
 - `POST /api/rooms/:roomId/leave` - Leave room
 - `GET /api/rooms/:roomId` - Get room details
 
-## 🔌 Socket Events
+### Screenshot
+<img width="3840" height="1947" alt="image" src="https://github.com/user-attachments/assets/cd76bfab-955d-4717-9fab-a15c4dd9cb73" />
+
 
 ### Client to Server
 - `authenticate` - Authenticate user
